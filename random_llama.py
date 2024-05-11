@@ -117,14 +117,14 @@ def write_tensors(gguf_writer) -> None:
             if tensor_full_name:
                 print("create", tensor_full_name + ".weight", "shape", tensor_shape)
                 # tensor? i made it the fuck up
-                tensor_value = np.ones(tensor_shape, dtype=np.float16) * random.uniform(
+                tensor_value = np.ones(tensor_shape, dtype=np.float32) * random.uniform(
                     -5, 5
                 )
                 gguf_writer.add_tensor(tensor_full_name + ".weight", tensor_value)
                 if bias_shape:
                     print("create", tensor_full_name + ".bias", "shape", bias_shape)
                     another_tensor_value = np.ones(
-                        bias_shape, dtype=np.float16
+                        bias_shape, dtype=np.float32
                     ) * random.uniform(-5, 5)
                     gguf_writer.add_tensor(
                         tensor_full_name + ".bias", another_tensor_value
@@ -147,7 +147,7 @@ def writer_example() -> None:
     gguf_writer.add_head_count_kv(n_head_kv)
     gguf_writer.add_rope_freq_base(10000.0)
     gguf_writer.add_layer_norm_rms_eps(1e-05)
-    gguf_writer.add_file_type(gguf.GGMLQuantizationType.F16)
+    gguf_writer.add_file_type(gguf.GGMLQuantizationType.F32)
     gguf_writer.add_expert_count(n_expert)
 
     gguf_writer.add_tokenizer_model("llama")
