@@ -30,7 +30,7 @@ class SentencePieceTokenTypes(IntEnum):
 
 
 n_embd = 2048
-n_ff = 1000
+n_ff = 512
 n_blocks = 2  # aka n_layers
 n_vocab = 32000
 n_head = 32
