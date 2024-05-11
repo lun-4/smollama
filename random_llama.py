@@ -117,14 +117,14 @@ def write_tensors(gguf_writer) -> None:
             if tensor_full_name:
                 print("create", tensor_full_name + ".weight", "shape", tensor_shape)
                 # tensor? i made it the fuck up
-                tensor_value = np.ones(tensor_shape, dtype=np.float32) * random.uniform(
+                tensor_value = np.ones(tensor_shape, dtype=np.float16) * random.uniform(
                     -5, 5
                 )
                 gguf_writer.add_tensor(tensor_full_name + ".weight", tensor_value)
                 if bias_shape:
                     print("create", tensor_full_name + ".bias", "shape", bias_shape)
                     another_tensor_value = np.ones(
-                        bias_shape, dtype=np.float32
+                        bias_shape, dtype=np.float16
                     ) * random.uniform(-5, 5)
                     gguf_writer.add_tensor(
                         tensor_full_name + ".bias", another_tensor_value
